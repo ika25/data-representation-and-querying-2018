@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Disasters <button class="btn btn-success" (click)="logout()">Logout</button></h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Deaths</th>
+        <th>Injureds</th>
+        <th>Rescuers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let disaster of disasters">
+        <td>{{ disaster.name }}</td>
+        <td>{{ disaster.location }}</td>
+        <td>{{ disaster.deaths }}</td>
+        <td>{{ disaster.injureds }}</td>
+        <td>{{ disaster.rescuers }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
