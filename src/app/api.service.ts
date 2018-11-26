@@ -8,7 +8,7 @@ import { constants } from './app.constants'
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = constants.baseUrl + "/api";
+const apiBaseUrl = constants.baseUrl + "/api";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,40 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getDisasters(): Observable<any> {
-    return this.http.get(apiUrl + '/disasters').pipe(
+    
+    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.all, this.getHeaderHoptions()).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  getDisaster(id: string): Observable<any> {
+    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.get + id, this.getHeaderHoptions())
+    .pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  saveDisaster(disaster): Observable<any> {
+    return this.http.post(apiBaseUrl + constants.apiUrl.disasters.save, disaster, this.getHeaderHoptions())
+    .pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  updateDisaster(disaster): Observable<any> {
+    return this.http.put(apiBaseUrl + constants.apiUrl.disasters.update, disaster, this.getHeaderHoptions())
+    .pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  deleteDisaster(id: string): Observable<any> {
+    return this.http.delete(apiBaseUrl + constants.apiUrl.disasters.delete + id, this.getHeaderHoptions())
+    .pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
@@ -40,5 +73,13 @@ export class ApiService {
   private extractData(res: Response) {
     let body = res;
     return body || { };
+  }
+
+  private getHeaderHoptions() {
+    return {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('jwtToken') === null ? '' : localStorage.getItem('jwtToken')
+      })
+    };
   }
 }

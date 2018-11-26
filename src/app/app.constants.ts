@@ -10,9 +10,9 @@ export const constants = {
     disasters: {
       all:  '/disasters',
       save: '/disaster',
-      update: '/disaster:id',
-      delete: '/disaster:id',
-      get: '/disaster:id'
+      update: '/disaster/',
+      delete: '/disaster/',
+      get: '/disaster/'
     }
   },
 
