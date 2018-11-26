@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 
-import { AppConstants } from '../shared/util/constants'
+import { constants } from '../app.constants'
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.http.post(AppConstants.baseURL + '/signin',this.loginData).subscribe(resp => {
+    this.http.post(constants.baseUrl + '/signin',this.loginData).subscribe(resp => {
       this.data = resp;
       localStorage.setItem('jwtToken', this.data.token);
       this.router.navigate(['disasters']);

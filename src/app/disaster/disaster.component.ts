@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from "@angular/router";
 
-import { AppConstants } from '../shared/util/constants'
+import { constants } from '../app.constants'
 
 @Component({
   selector: 'app-disaster',
@@ -21,7 +21,7 @@ export class DisasterComponent implements OnInit {
         'Authorization': localStorage.getItem('jwtToken') === null ? '' : localStorage.getItem('jwtToken')
       })
     };
-    this.http.get(AppConstants.baseURL + '/disasters', httpOptions).subscribe(data => {
+    this.http.get(constants.baseUrl + constants.apiUrl.disasters, httpOptions).subscribe(data => {
       this.disasters = data;
     }, error => {
       console.log(error);

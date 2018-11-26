@@ -11,40 +11,41 @@ import { DisasterComponent } from './disaster/disaster.component';
 import { DisasterCreateComponent } from './disaster-create/disaster-create.component';
 import { DisasterEditComponent } from './disaster-edit/disaster-edit.component';
 import { DisasterDetailComponent } from './disaster-detail/disaster-detail.component';
+import { constants } from './app.constants';
 
 const appRoutes: Routes = [
   {
-    path: 'disasters',
+    path: constants.pageUrl.disasters,
     component: DisasterComponent,
     data: { title: 'Disasters' }
   },
   {
-    path: 'disaster-details/:id',
+    path: constants.pageUrl.disasterDetails,
     component: DisasterDetailComponent,
     data: { title: 'Disaster Details' }
   },
   {
-    path: 'disaster-edit/:id',
+    path: constants.pageUrl.disasterEdit,
     component: DisasterEditComponent,
     data: { title: 'Disaster Edit' }
   },
   {
-    path: 'disaster-create',
+    path: constants.pageUrl.disasterCreate,
     component: DisasterCreateComponent,
     data: { title: 'Disaster Create' }
   },
   {
-    path: 'login',
+    path: constants.pageUrl.signin,
     component: LoginComponent,
     data: { title: 'Login' }
   },
   {
-    path: 'signup',
+    path: constants.pageUrl.signup,
     component: SignupComponent,
     data: { title: 'Sign Up' }
   },
   { path: '',
-    redirectTo: '/disasters',
+    redirectTo: constants.pageUrl.disasters,
     pathMatch: 'full'
   }
 ];
