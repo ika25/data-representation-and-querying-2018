@@ -57,6 +57,14 @@ export class ApiService {
     );
   }
 
+  signin(data): Observable<any> {
+    return this.http.post(apiBaseUrl + constants.apiUrl.signin, data, this.getHeaderHoptions())
+    .pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if(error.error instanceof ErrorEvent) {
       // Client side error
