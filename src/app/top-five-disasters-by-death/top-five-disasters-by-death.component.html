@@ -1,0 +1,30 @@
+<div class="container">
+    <app-header></app-header>
+    <h1>Disasters by most no. of death (Top 5)</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Deaths</th>
+          <th>Victims</th>
+          <th>Rescued</th>
+          <th>Rescuers</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let disaster of disasters">
+          <td>{{ disaster.name }}</td>
+          <td>{{ disaster.location }}</td>
+          <td>{{ disaster.deaths }}</td>
+          <td>{{ disaster.victims }}</td>
+          <td>{{ disaster.rescuers }}</td>
+          <td>{{ disaster.rescued }}</td>
+          <td>
+            <a [routerLink]="['/disaster-detail/', disaster._id]">Detail</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

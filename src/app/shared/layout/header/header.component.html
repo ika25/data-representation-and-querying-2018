@@ -1,13 +1,11 @@
 <!-- Sidebar -->
 <nav class="navbar navbar-inverse" id="sidebar-wrapper" role="navigation">
   <ul class="nav sidebar-nav">
-      <li class="sidebar-brand" routerLinkActive="active">
-          <a href="#">
-             Dashboard
-          </a>
-      </li>
       <li routerLinkActive="active">
           <a [routerLink]="['/disasters']">Disasters</a>
+      </li>
+      <li class="sidebar-brand" routerLinkActive="active">
+          <a [routerLink]="['/top-five-disasters-by-death']">Disasters By Death</a>
       </li>
       <li>
           <a (click)="logout()" style="cursor: pointer;">Logout</a>

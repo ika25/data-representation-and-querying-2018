@@ -12,7 +12,8 @@ export const constants = {
       save: '/disaster',
       update: '/disaster/',
       delete: '/disaster/',
-      get: '/disaster/'
+      get: '/disaster/',
+      topFiveByDeaths: '/topFiveDisastersByDeath'
     }
   },
 
@@ -22,7 +23,8 @@ export const constants = {
     disasters: 'disasters',
     disasterDetails: 'disaster-detail/:id',
     disasterEdit: 'disaster-edit/:id',
-    disasterCreate: 'disaster-create'
+    disasterCreate: 'disaster-create',
+    topFiveDisastersByDeath: 'top-five-disasters-by-death'
   },
 
   apiRequestHeaders: {

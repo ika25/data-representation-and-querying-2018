@@ -73,6 +73,14 @@ export class ApiService {
     );
   }
 
+  getTopFiveDisastersByDeath(): Observable<any> {
+    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.topFiveByDeaths)
+    .pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if(error.error instanceof ErrorEvent) {
       // Client side error

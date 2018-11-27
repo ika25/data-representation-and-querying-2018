@@ -14,8 +14,14 @@ import { DisasterDetailComponent } from './disaster-detail/disaster-detail.compo
 import { constants } from './app.constants';
 import { HeaderComponent } from './shared/layout/header/header.component';
 import { SidebarDirective } from './shared/layout/header/sidebar.directive';
+import { TopFiveDisastersByDeathComponent } from './top-five-disasters-by-death/top-five-disasters-by-death.component';
 
 const appRoutes: Routes = [
+  {
+    path: constants.pageUrl.topFiveDisastersByDeath,
+    component: TopFiveDisastersByDeathComponent,
+    data: { title: 'Disasters By Death' }
+  },
   {
     path: constants.pageUrl.disasters,
     component: DisasterComponent,
@@ -62,7 +68,8 @@ const appRoutes: Routes = [
     DisasterEditComponent,
     DisasterDetailComponent,
     HeaderComponent,
-    SidebarDirective
+    SidebarDirective,
+    TopFiveDisastersByDeathComponent
   ],
   imports: [
     BrowserModule,
