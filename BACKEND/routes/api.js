@@ -142,17 +142,14 @@ router.get('/disasters', passport.authenticate('jwt', { session: false}), functi
 });
 
 // Get Top 5 disaster By Death  
-router.get('/disasters/5', function(req, res, next) {
+router.get('/topFiveDisastersByDeath', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var token = getToken(req.headers);
-  if (token || true) {
+  if (token) {
     // console.log(Disaster.find().sort({deaths: -1}).limit(5).toJSON());
     Disaster.find().sort({deaths: -1}).limit(5).exec(function (err, disasters) {
-      console.log("/disasters/5");
       if (err) {
-        console.log(err);
         return next(err);
       }
-      console.log(disasters);
       res.json(disasters);
     });
   } else {
