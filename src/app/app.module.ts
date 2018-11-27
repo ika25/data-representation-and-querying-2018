@@ -12,6 +12,8 @@ import { DisasterCreateComponent } from './disaster-create/disaster-create.compo
 import { DisasterEditComponent } from './disaster-edit/disaster-edit.component';
 import { DisasterDetailComponent } from './disaster-detail/disaster-detail.component';
 import { constants } from './app.constants';
+import { HeaderComponent } from './shared/layout/header/header.component';
+import { SidebarDirective } from './shared/layout/header/sidebar.directive';
 
 const appRoutes: Routes = [
   {
@@ -58,7 +60,9 @@ const appRoutes: Routes = [
     DisasterComponent,
     DisasterCreateComponent,
     DisasterEditComponent,
-    DisasterDetailComponent
+    DisasterDetailComponent,
+    HeaderComponent,
+    SidebarDirective
   ],
   imports: [
     BrowserModule,

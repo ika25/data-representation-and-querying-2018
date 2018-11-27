@@ -41,8 +41,8 @@ export class ApiService {
     );
   }
 
-  updateDisaster(disaster): Observable<any> {
-    return this.http.put(apiBaseUrl + constants.apiUrl.disasters.update, disaster, this.getHeaderHoptions())
+  updateDisaster(id, disaster): Observable<any> {
+    return this.http.put(apiBaseUrl + constants.apiUrl.disasters.update + id, disaster, this.getHeaderHoptions())
     .pipe(
       map(this.extractData),
       catchError(this.handleError)
@@ -58,7 +58,15 @@ export class ApiService {
   }
 
   signin(data): Observable<any> {
-    return this.http.post(apiBaseUrl + constants.apiUrl.signin, data, this.getHeaderHoptions())
+    return this.http.post(apiBaseUrl + constants.apiUrl.signin, data)
+    .pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  signup(data): Observable<any> {
+    return this.http.post(apiBaseUrl + constants.apiUrl.signup, data)
     .pipe(
       map(this.extractData),
       catchError(this.handleError)

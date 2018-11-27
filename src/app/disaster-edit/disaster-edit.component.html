@@ -1,3 +1,32 @@
-<p>
-  disaster-edit works!
-</p>
+<div class="container">
+    <app-header></app-header>
+    <form class="form-signin" (ngSubmit)="edit()" #editForm="ngForm">
+        <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="message !== ''">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{message}}
+        </div>
+        <h2 class="form-signin-heading">Disaster</h2>
+  
+        <label class="sr-only">Name</label>
+        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="disaster.name" name="name" required/>
+        <label class="sr-only">Description</label>
+        <input type="text" class="form-control" placeholder="Description" [(ngModel)]="disaster.description" name="description" required/>
+        <label class="sr-only">Location</label>
+        <input type="text" class="form-control" placeholder="Location" [(ngModel)]="disaster.location" name="location" required/>
+        <label class="sr-only">Occurred</label>
+        <input type="date" class="form-control" placeholder="Occurred" [(ngModel)]="disaster.occurred" name="occurred" required/>
+        <label class="sr-only">Rescuer</label>
+        <input type="number" class="form-control" placeholder="Rescuer" [(ngModel)]="disaster.rescuers" name="rescuers" required/>
+        <label class="sr-only">Rescued</label>
+        <input type="number" class="form-control" placeholder="Rescued" [(ngModel)]="disaster.rescued" name="rescued" required/>
+        <label class="sr-only">Deaths</label>
+        <input type="number" class="form-control" placeholder="Deaths" [(ngModel)]="disaster.deaths" name="deaths" required/>
+        <label class="sr-only">Victims</label>
+        <input type="number" class="form-control" placeholder="Victims" [(ngModel)]="disaster.victims" name="victims" required/>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!editForm.form.valid">Save</button>
+        <p>
+            <a [routerLink]="['/disasters']">Back</a>
+        </p>
+    </form>
+  </div>

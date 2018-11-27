@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
 
 import { constants } from '../app.constants'
+import { ApiService } from "../api.service";
 
 @Component({
   selector: 'app-login',
@@ -16,16 +15,17 @@ export class LoginComponent implements OnInit {
   message = '';
   data: any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.http.post(constants.baseUrl + '/signin',this.loginData).subscribe(resp => {
+
+    this.api.signin(this.loginData).subscribe(resp => {
       this.data = resp;
       localStorage.setItem('jwtToken', this.data.token);
-      this.router.navigate(['disasters']);
+      this.router.navigate([constants.pageUrl.disasters]);
     }, err => {
       this.message = err.error.msg;
     });

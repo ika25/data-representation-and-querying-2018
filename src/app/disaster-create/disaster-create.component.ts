@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {  Router } from "@angular/router";
+
+import { ApiService } from "../api.service";
+import { constants } from "../app.constants";
 
 @Component({
   selector: 'app-disaster-create',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisasterCreateComponent implements OnInit {
 
-  constructor() { }
+  disaster = { };
+  message = '';
+
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  create() {
+    this.api.saveDisaster(this.disaster).subscribe(resp => {
+      if(resp.success === true) {
+        this.router.navigate([constants.pageUrl.disasters]);
+      } else {
+        this.message = resp.msg;
+      }
+    }, err => {
+      if(err.status === 401) {
+        this.router.navigate([constants.pageUrl.signin]);
+      } else {
+        this.message = constants.errors.unExpected;
+      }
+    });
   }
 
 }

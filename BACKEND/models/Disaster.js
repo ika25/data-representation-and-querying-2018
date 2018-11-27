@@ -29,11 +29,6 @@ var DisasterSchema = new Schema({
     required: false,
     default: 0
   },
-  injureds: {
-    type: Number,
-    required: false,
-    default: 0
-  },
   deaths: {
     type: Number,
     required: false,

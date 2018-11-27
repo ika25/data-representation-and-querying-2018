@@ -1,13 +1,16 @@
 <div class="container">
-  <h1>Disasters <button class="btn btn-success" (click)="logout()">Logout</button></h1>
+  <app-header></app-header>
+  <h1>Disasters <button class="btn btn-success" [routerLink]="['/disaster-create']">New</button></h1>
   <table class="table">
     <thead>
       <tr>
         <th>Name</th>
         <th>Location</th>
         <th>Deaths</th>
-        <th>Injureds</th>
+        <th>Victims</th>
+        <th>Rescued</th>
         <th>Rescuers</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -15,8 +18,12 @@
         <td>{{ disaster.name }}</td>
         <td>{{ disaster.location }}</td>
         <td>{{ disaster.deaths }}</td>
-        <td>{{ disaster.injureds }}</td>
+        <td>{{ disaster.victims }}</td>
         <td>{{ disaster.rescuers }}</td>
+        <td>{{ disaster.rescued }}</td>
+        <td>
+          <a [routerLink]="['/disaster-edit/', disaster._id]">Edit</a>
+        </td>
       </tr>
     </tbody>
   </table>

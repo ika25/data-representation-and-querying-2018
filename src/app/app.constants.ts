@@ -17,12 +17,12 @@ export const constants = {
   },
 
   pageUrl: {
-    signin: '/signin',
-    signup: '/signup',
-    disasters: '/disasters',
-    disasterDetails: '/disaster-details/:id',
-    disasterEdit: '/disaster-edit/:id',
-    disasterCreate: '/disaster-create'
+    signin: 'signin',
+    signup: 'signup',
+    disasters: 'disasters',
+    disasterDetails: 'disaster-details/:id',
+    disasterEdit: 'disaster-edit/:id',
+    disasterCreate: 'disaster-create'
   },
 
   apiRequestHeaders: {
@@ -48,7 +48,7 @@ export const constants = {
   },
 
   errors: {
-
+    unExpected: "An unexpected Error Occurred"
   }
 
 };

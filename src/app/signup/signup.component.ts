@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 
-import { AppConstants } from '../shared/util/constants'
+import { constants } from '../app.constants'
+import { ApiService } from "../api.service";
 
 @Component({
   selector: 'app-signup',
@@ -17,14 +17,15 @@ export class SignupComponent implements OnInit {
   };
   message: '';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
   }
 
   signup() {
-    this.http.post(AppConstants.baseURL + '/signup', this.signupData).subscribe(success => {
-      this.router.navigate(['login']);
+
+    this.api.signup(this.signupData).subscribe(resp => {
+      this.router.navigate([constants.pageUrl.signin]);
     }, error => {
       this.message = error.error.msg;
     });

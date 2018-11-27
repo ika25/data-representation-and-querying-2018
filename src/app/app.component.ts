@@ -11,10 +11,4 @@ import { constants } from "./app.constants"
 export class AppComponent {
   title = 'disaster-monitoring';
 
-  constructor(private router: Router) {}
-
-  logout() {
-    localStorage.removeItem('jwtToken');
-    this.router.navigate([constants.pageUrl.signin]);
-  }
 }

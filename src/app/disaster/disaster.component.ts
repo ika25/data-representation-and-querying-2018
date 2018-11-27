@@ -13,22 +13,20 @@ export class DisasterComponent implements OnInit {
 
   disasters: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private api: ApiService) { }
 
   ngOnInit() {
-    // let httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Authorization': localStorage.getItem('jwtToken') === null ? '' : localStorage.getItem('jwtToken')
-    //   })
-    // };
-    // this.http.get(constants.baseUrl + constants.apiUrl.disasters, httpOptions).subscribe(data => {
-    //   this.disasters = data;
-    // }, error => {
-    //   console.log(error);
-    //   if(error.status === 401) {
-    //     this.router.navigate(['login']);
-    //   }
-    // });
+
+    this.api.getDisasters()
+    .subscribe(res => {
+      console.log(res);
+      this.disasters = res;
+    }, err => {
+      console.log(err);
+      if(err.status === 401) {
+        this.router.navigate([constants.pageUrl.signin]);
+      }
+    });
   }
 
 }

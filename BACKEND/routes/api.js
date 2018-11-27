@@ -85,7 +85,7 @@ router.post('/disaster', passport.authenticate('jwt', { session: false}), functi
 });
 
 // Update
-router.put('/disaster:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+router.put('/disaster/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var token = getToken(req.headers);
   if(token) {
     Disaster.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
@@ -93,46 +93,51 @@ router.put('/disaster:id', passport.authenticate('jwt', { session: false}), func
       res.json(post);
     });
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
 
 // Delete
-router.put('/disaster:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+router.delete('/disaster/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var token = getToken(req.headers);
   if(token) {
-    Disaster.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    Disaster.findByIdAndRemove(req.params.id, function (err, post) {
       if (err) return next(err);
       res.json(post);
     });
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
 
 // Get by Id
-router.get('/disaster:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
+router.get('/disaster/:id', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var token = getToken(req.headers);
+  console.log('/disaster:id');
   if(token) {
     Disaster.findById(req.params.id, function (err, post) {
       if (err) return next(err);
       res.json(post);
     });
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
 
 // Get all 
-router.get('/disasters', passport.authenticate('jwt', { session: false}), function(req, res) {
+router.get('/disasters', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var token = getToken(req.headers);
+  console.log('/disasters');
   if (token) {
     Disaster.find(function (err, disaster) {
-      if (err) return next(err);
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
       res.json(disaster);
     });
   } else {
-    return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
 
