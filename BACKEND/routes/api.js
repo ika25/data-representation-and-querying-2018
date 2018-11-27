@@ -141,6 +141,25 @@ router.get('/disasters', passport.authenticate('jwt', { session: false}), functi
   }
 });
 
+// Get Top 5 disaster By Death  
+router.get('/disasters/5', function(req, res, next) {
+  var token = getToken(req.headers);
+  if (token || true) {
+    // console.log(Disaster.find().sort({deaths: -1}).limit(5).toJSON());
+    Disaster.find().sort({deaths: -1}).limit(5).exec(function (err, disasters) {
+      console.log("/disasters/5");
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
+      console.log(disasters);
+      res.json(disasters);
+    });
+  } else {
+    return res.status(401).send({success: false, msg: 'Unauthorized.'});
+  }
+});
+
 getToken = function (headers) {
   if (headers && headers.authorization) {
     var parted = headers.authorization.split(' ');
