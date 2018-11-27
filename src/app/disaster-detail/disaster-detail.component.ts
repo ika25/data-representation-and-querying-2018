@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router"
+
+import { ApiService } from "../api.service"
+import { constants } from "../app.constants"
 
 @Component({
   selector: 'app-disaster-detail',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisasterDetailComponent implements OnInit {
 
-  constructor() { }
+  disaster = {};
+  message = "";
+
+  constructor(private api: ApiService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getDisaster(this.route.snapshot.params['id']);
   }
 
+  getDisaster(id) {
+    this.api.getDisaster(id).subscribe(resp => {
+      this.disaster = resp;
+    }, err => {
+      if(err.status === 401) {
+        this.router.navigate([constants.pageUrl.signin]);
+      } else {
+        this.message = constants.errors.unExpected;
+      }
+    });
+  }
 }

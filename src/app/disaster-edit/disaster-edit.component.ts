@@ -23,12 +23,6 @@ export class DisasterEditComponent implements OnInit {
   getDisaster(id) {
     this.api.getDisaster(id).subscribe(resp => {
       this.disaster = resp;
-      // if(resp.success === true) {
-      //   this.disaster = resp;
-      //   
-      // } else {
-      //   this.message = resp.msg;
-      // }
     }, err => {
       if(err.status === 401) {
         this.router.navigate([constants.pageUrl.signin]);

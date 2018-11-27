@@ -20,7 +20,7 @@ export const constants = {
     signin: 'signin',
     signup: 'signup',
     disasters: 'disasters',
-    disasterDetails: 'disaster-details/:id',
+    disasterDetails: 'disaster-detail/:id',
     disasterEdit: 'disaster-edit/:id',
     disasterCreate: 'disaster-create'
   },

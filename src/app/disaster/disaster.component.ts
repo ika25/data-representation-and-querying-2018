@@ -17,6 +17,10 @@ export class DisasterComponent implements OnInit {
 
   ngOnInit() {
 
+    this.getDisasters();
+  }
+
+  getDisasters() {
     this.api.getDisasters()
     .subscribe(res => {
       console.log(res);
@@ -28,5 +32,7 @@ export class DisasterComponent implements OnInit {
       }
     });
   }
+
+  
 
 }

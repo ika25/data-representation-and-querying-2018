@@ -1,3 +1,18 @@
-<p>
-  disaster-detail works!
-</p>
+<div class="container">
+  <app-header></app-header>
+  <h2>{{ disaster.name }}</h2>
+  <p>{{ disaster.description }}</p>
+  <br/>
+  <label>Location: {{ disaster.location }}</label>
+  <br/>
+  <label>No. of rescures rescuing: {{ disaster.rescuers }}</label>
+  <br/>
+  <label>No. of victims: {{ disaster.victims }}</label>
+  <br/>
+  <label>No. of deaths: {{ disaster.deaths }}</label>
+  <br/>
+  <label>No. of rescueds: {{ disaster.rescued }}</label>
+  <br/>
+  <hr/>
+  <a [routerLink]="['/disasters']">Back</a>
+</div>

@@ -22,7 +22,8 @@
         <td>{{ disaster.rescuers }}</td>
         <td>{{ disaster.rescued }}</td>
         <td>
-          <a [routerLink]="['/disaster-edit/', disaster._id]">Edit</a>
+          <a [routerLink]="['/disaster-edit/', disaster._id]">Edit</a> | 
+          <a [routerLink]="['/disaster-detail/', disaster._id]">Detail</a>
         </td>
       </tr>
     </tbody>
