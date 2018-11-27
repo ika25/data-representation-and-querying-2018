@@ -20,10 +20,12 @@ export class DisasterDetailComponent implements OnInit {
     this.getDisaster(this.route.snapshot.params['id']);
   }
 
+  // Get disaster by id
   getDisaster(id) {
     this.api.getDisaster(id).subscribe(resp => {
       this.disaster = resp;
     }, err => {
+      // If user is not loggedin then it will be redirect to login page
       if(err.status === 401) {
         this.router.navigate([constants.pageUrl.signin]);
       } else {

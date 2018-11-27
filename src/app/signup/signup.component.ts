@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-
+    // Signup
     this.api.signup(this.signupData).subscribe(resp => {
       this.router.navigate([constants.pageUrl.signin]);
     }, error => {

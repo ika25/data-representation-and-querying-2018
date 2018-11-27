@@ -19,6 +19,7 @@ export class DisasterCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Create new disaster
   create() {
     this.api.saveDisaster(this.disaster).subscribe(resp => {
       if(resp.success === true) {
@@ -27,6 +28,7 @@ export class DisasterCreateComponent implements OnInit {
         this.message = resp.msg;
       }
     }, err => {
+      // If user is not loggedin then it will be redirect to login page
       if(err.status === 401) {
         this.router.navigate([constants.pageUrl.signin]);
       } else {

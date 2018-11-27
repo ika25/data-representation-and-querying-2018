@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { SidebarDirective } from './shared/layout/header/sidebar.directive';
 import { TopFiveDisastersByDeathComponent } from './top-five-disasters-by-death/top-five-disasters-by-death.component';
 
+// Configure routes
 const appRoutes: Routes = [
   {
     path: constants.pageUrl.topFiveDisastersByDeath,

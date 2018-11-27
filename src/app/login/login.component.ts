@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
     this.api.signin(this.loginData).subscribe(resp => {
       this.data = resp;
+      // Add jwt in localstorage
       localStorage.setItem('jwtToken', this.data.token);
       this.router.navigate([constants.pageUrl.disasters]);
     }, err => {

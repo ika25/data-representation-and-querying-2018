@@ -21,23 +21,14 @@ export class TopFiveDisastersByDeathComponent implements OnInit {
   }
 
   getDisasters() {
-    this.api.getDisasters()
+    // Gets top five disasters by death
+    this.api.getTopFiveDisastersByDeath()
     .subscribe(res => {
       console.log(res);
       this.disasters = res;
     }, err => {
       console.log(err);
-      if(err.status === 401) {
-        this.router.navigate([constants.pageUrl.signin]);
-      }
-    });
-  }
-
-  delete(id) {
-    this.api.deleteDisaster(id).subscribe(resp => {
-      this.getDisasters();
-    }, err => {
-      console.log(err);
+      // If user is not loggedin then it will be redirect to login page
       if(err.status === 401) {
         this.router.navigate([constants.pageUrl.signin]);
       }

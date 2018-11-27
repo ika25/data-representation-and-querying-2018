@@ -10,11 +10,6 @@ var router = express.Router();
 var User = require("../models/user");
 var Disaster = require("../models/disaster");
 
-/* GET home page. */
-router.get('/profile', function(req, res, next) {
-  res.send('Express RESTful API');
-});
-
 router.post('/signup', function(req, res) {
   if (!req.body.username || !req.body.password) {
     res.json({success: false, msg: 'Please pass username and password.'});
@@ -50,6 +45,7 @@ router.post('/signin', function(req, res) {
           // return the information including token as JSON
           res.json({success: true, token: 'JWT ' + token});
         } else {
+          // If authentication failed
           res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
         }
       });
@@ -80,6 +76,7 @@ router.post('/disaster', passport.authenticate('jwt', { session: false}), functi
       res.json({success: true, msg: 'Successful created new disaster.'});
     });
   } else {
+    // If user is not loggedin and try to access secure api
     return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
@@ -93,6 +90,7 @@ router.put('/disaster/:id', passport.authenticate('jwt', { session: false}), fun
       res.json(post);
     });
   } else {
+    // If user is not loggedin and try to access secure api
     return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
@@ -106,6 +104,7 @@ router.delete('/disaster/:id', passport.authenticate('jwt', { session: false}), 
       res.json(post);
     });
   } else {
+    // If user is not loggedin and try to access secure api
     return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
@@ -120,6 +119,7 @@ router.get('/disaster/:id', passport.authenticate('jwt', { session: false}), fun
       res.json(post);
     });
   } else {
+    // If user is not loggedin and try to access secure api
     return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
@@ -137,6 +137,7 @@ router.get('/disasters', passport.authenticate('jwt', { session: false}), functi
       res.json(disaster);
     });
   } else {
+    // If user is not loggedin and try to access secure api
     return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
@@ -145,7 +146,7 @@ router.get('/disasters', passport.authenticate('jwt', { session: false}), functi
 router.get('/topFiveDisastersByDeath', passport.authenticate('jwt', { session: false}), function(req, res, next) {
   var token = getToken(req.headers);
   if (token) {
-    // console.log(Disaster.find().sort({deaths: -1}).limit(5).toJSON());
+    // Get top 5 disaster by death
     Disaster.find().sort({deaths: -1}).limit(5).exec(function (err, disasters) {
       if (err) {
         return next(err);
@@ -153,10 +154,12 @@ router.get('/topFiveDisastersByDeath', passport.authenticate('jwt', { session: f
       res.json(disasters);
     });
   } else {
+    // If user is not loggedin and try to access secure api
     return res.status(401).send({success: false, msg: 'Unauthorized.'});
   }
 });
 
+// Extract token from headers
 getToken = function (headers) {
   if (headers && headers.authorization) {
     var parted = headers.authorization.split(' ');

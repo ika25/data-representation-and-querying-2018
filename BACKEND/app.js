@@ -11,6 +11,7 @@ var cors = require('cors')
 
 var api = require('./routes/api');
 var app = express();
+// Allow CROS access from http://localhost:4200
 app.use(cors({origin: 'http://localhost:4200', optionsSuccessStatus: 200}))
 
 app.use(passport.initialize());
@@ -19,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/static', express.static(path.join(__dirname, 'dist')));
-app.use('/api', api);
+app.use('/api', api); // Prefix for the api is 'api'
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

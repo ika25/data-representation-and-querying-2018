@@ -10,6 +10,8 @@ const httpOptions = {
 };
 const apiBaseUrl = constants.baseUrl + "/api";
 
+// This class act as service for angular app, that call backend apis and get result/error from the api to transfer to component
+// It acts bridge between angular components and backend apis
 @Injectable({
   providedIn: 'root'
 })
@@ -19,14 +21,14 @@ export class ApiService {
 
   getDisasters(): Observable<any> {
     
-    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.all, this.getHeaderHoptions()).pipe(
+    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.all, this.getHeaderOptions()).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
   }
 
   getDisaster(id: string): Observable<any> {
-    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.get + id, this.getHeaderHoptions())
+    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.get + id, this.getHeaderOptions())
     .pipe(
       map(this.extractData),
       catchError(this.handleError)
@@ -34,7 +36,7 @@ export class ApiService {
   }
 
   saveDisaster(disaster): Observable<any> {
-    return this.http.post(apiBaseUrl + constants.apiUrl.disasters.save, disaster, this.getHeaderHoptions())
+    return this.http.post(apiBaseUrl + constants.apiUrl.disasters.save, disaster, this.getHeaderOptions())
     .pipe(
       map(this.extractData),
       catchError(this.handleError)
@@ -42,7 +44,7 @@ export class ApiService {
   }
 
   updateDisaster(id, disaster): Observable<any> {
-    return this.http.put(apiBaseUrl + constants.apiUrl.disasters.update + id, disaster, this.getHeaderHoptions())
+    return this.http.put(apiBaseUrl + constants.apiUrl.disasters.update + id, disaster, this.getHeaderOptions())
     .pipe(
       map(this.extractData),
       catchError(this.handleError)
@@ -50,7 +52,7 @@ export class ApiService {
   }
 
   deleteDisaster(id: string): Observable<any> {
-    return this.http.delete(apiBaseUrl + constants.apiUrl.disasters.delete + id, this.getHeaderHoptions())
+    return this.http.delete(apiBaseUrl + constants.apiUrl.disasters.delete + id, this.getHeaderOptions())
     .pipe(
       map(this.extractData),
       catchError(this.handleError)
@@ -74,7 +76,7 @@ export class ApiService {
   }
 
   getTopFiveDisastersByDeath(): Observable<any> {
-    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.topFiveByDeaths)
+    return this.http.get(apiBaseUrl + constants.apiUrl.disasters.topFiveByDeaths, this.getHeaderOptions())
     .pipe(
       map(this.extractData),
       catchError(this.handleError)
@@ -87,10 +89,10 @@ export class ApiService {
     } else {
       // Backend-service error
       if(error.status === 401) {
-        // TODO: Emit to login page
       }
     }
-
+    
+    // Throw error so that component catch it and act accordingly
     return throwError(error)
   }
 
@@ -99,7 +101,8 @@ export class ApiService {
     return body || { };
   }
 
-  private getHeaderHoptions() {
+  // Insert JWT from local storage into the http headers
+  private getHeaderOptions() {
     return {
       headers: new HttpHeaders({
         'Authorization': localStorage.getItem('jwtToken') === null ? '' : localStorage.getItem('jwtToken')

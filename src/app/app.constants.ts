@@ -1,6 +1,6 @@
+// It holds all constants related to app
 export const constants = {
 
-  localStorageUserLoginKey: 'ng-spring-login',
   baseUrl: 'http://localhost:3000',
 
   apiUrl: {
@@ -25,28 +25,6 @@ export const constants = {
     disasterEdit: 'disaster-edit/:id',
     disasterCreate: 'disaster-create',
     topFiveDisastersByDeath: 'top-five-disasters-by-death'
-  },
-
-  apiRequestHeaders: {
-    default: {
-      contentType: 'application/json',
-      source: 'Web',
-      ifModifiedSince: '0',
-      cacheControl: 'no-cache',
-      pragma: 'no-cache'
-    }
-  },
-
-  apiRequestHeaderKeys: {
-    contentType: 'Content-Type',
-    authorization: 'Authorization',
-    xAuthorization: 'X_AUTHORIZATION',
-    source: 'X_SOURCE',
-    authToken: 'x_auth_token',
-
-    ifModifiedSince: 'If-Modified-Since',
-    cacheControl: 'Cache-Control',
-    pragma: 'Pragma'
   },
 
   errors: {
