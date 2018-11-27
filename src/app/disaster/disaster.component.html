@@ -23,7 +23,8 @@
         <td>{{ disaster.rescued }}</td>
         <td>
           <a [routerLink]="['/disaster-edit/', disaster._id]">Edit</a> | 
-          <a [routerLink]="['/disaster-detail/', disaster._id]">Detail</a>
+          <a [routerLink]="['/disaster-detail/', disaster._id]">Detail</a> | 
+          <a (click)="delete([disaster._id])">Delete</a>
         </td>
       </tr>
     </tbody>

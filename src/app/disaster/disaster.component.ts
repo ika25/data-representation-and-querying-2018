@@ -33,6 +33,15 @@ export class DisasterComponent implements OnInit {
     });
   }
 
-  
+  delete(id) {
+    this.api.deleteDisaster(id).subscribe(resp => {
+      this.getDisasters();
+    }, err => {
+      console.log(err);
+      if(err.status === 401) {
+        this.router.navigate([constants.pageUrl.signin]);
+      }
+    });
+  }
 
 }
