@@ -1,7 +1,9 @@
 
 # DisasterMonitoring
 
-The project - Disaster Monitoring - is use to monitor disasters effect.
+The project - Disaster Monitoring - is use to monitor disasters effect. The Disaster Monitoring application is used to maintain the records of all disasters, monitoring the effects and keep an eye on sever disasters by generating report.
+
+Following are components that make the disaster monitoring system live.
 
 ## Description
 
