@@ -68,3 +68,20 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/` and to run
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## resources and references
+https://www.tutorialspoint.com/nodejs/index.htm
+
+https://www.djamware.com/post/5b00bb9180aca726dee1fd6d/mean-stack-angular-6-crud-web-application
+
+https://www.djamware.com/post/5a878b3c80aca7059c142979/securing-mean-stack-angular-5-web-application-using-passport
+
+https://www.youtube.com/watch?v=r0QYP61bCCM
+
+https://www.youtube.com/watch?v=V9zDNfVs7Z4
+
+https://www.youtube.com/watch?v=x2_bcCZg8vQ&t=273s
+
+https://www.youtube.com/watch?v=pWbMrx5rVBE
+
+https://www.youtube.com/watch?v=SD9cS_6O4zg
